@@ -26,7 +26,7 @@ async def setup_view(hass: HomeAssistant):
     add_extra_js_url(hass, frontend_script_url_with_parameter , es5=False)
 
     # Check if Neerslag Card is loaded in frontend, if not: add it again
-    resources = hass.data["lovelace"]["resources"]
+    resources = hass.data.get("lovelace", {}).get("resources")
     if resources:
         if not resources.loaded:
             await resources.async_load()
